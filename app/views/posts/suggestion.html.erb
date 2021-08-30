@@ -1,0 +1,21 @@
+<main>
+        <div class="main-inner">
+            <h2 class="top-title new-account-title">「<%= @post.title%>」に提案する</h2>
+            <%= form_with url: "/posts/#{@post.id}/suggestion/create" do |form| %>
+                <div class="wrapper">
+                    <div class="new-account-area">
+                        <form class="new-account-form">
+                            <div class="form-item">
+                                <label class="form-label">コメント</label>
+                                <p class="mandatory">必須</p>
+                                <textarea name="comment" cols="30" rows="10" class="request-post-content"></textarea>
+                            </div>
+                        </form>
+                    </div>            
+                    <div class="button-area">
+                        <input class="button" type="submit" value="提案する">
+                    </div>
+                </div>
+            <% end%>
+        </div>
+    </main>

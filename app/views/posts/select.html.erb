@@ -1,0 +1,36 @@
+<main>
+        <div class="main-inner">
+            <h2 class="top-title new-account-title">発注者決定</h2>
+            <p class="sub-title">発注者を選択してください</p>
+            <%= form_with url: "/posts/#{@post.id}/select/decision" do |form| %>
+                <div calass="suggestion-list-area-wrapper">
+                    <div class="suggestion-list-area">
+                        <% @suggestion.each do |suggestion|%>
+                            <input type="radio" class="btn-check" name="suggestion_user_id" id="<%= suggestion.id%>" value="<%= suggestion.user_id%>" autocomplete="off" checked>
+                            <label class="btn btn-secondary suggestion-item" for="<%= suggestion.id%>">
+                                <div class="suggestion-name-area">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p class="sugestion-name">資産税課</p>
+                                    <p class="sugestion-name">松岡さん</p>
+                                </div>
+                                <div class="suggestion-comment-area">
+                                    <div class="suggestion-comment-title-area">
+                                        <i class="fas fa-comment"></i>
+                                        <p class="suggestion-comment-title">メッセージ</p>
+                                    </div>
+                                    <p class="suggestion-comment"><%= suggestion.comment %></p>
+                                    <p class="suggestion-time">2021/8/16 15:00</p>
+                                </div>
+                            </label>
+                        <% end%>
+                    </div>
+                    <div class="select-button-area">
+                        <input class="button" type="submit" value="この人に依頼する">
+                    </div>
+                </div>
+            <% end%>
+            <div class="back-button-area">
+                <%= link_to("戻る", "/posts/#{@post.id}", class:"button button_link") %>
+            </div>
+        </div>
+    </main>

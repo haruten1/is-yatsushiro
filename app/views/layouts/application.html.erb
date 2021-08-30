@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>庁内ソーシング IS</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+        <div class="header-inner">
+          <% if @current_user %>
+            <h1 class="top-logo"><%= link_to("IS","/posts/index")%></h1>
+          <% else%>
+            <h1 class="top-logo"><%= link_to("IS","/")%></h1>
+          <% end %> 
+            <nav class="header-nav">
+                <ul class="header-ul">
+                  <% if @current_user %>
+                    <li class="header-li"><%= link_to(@current_user.name, "/posts/index") %></li>
+                    <li class="header-li"><%= link_to("依頼する", "/posts/new") %></li>
+                    <li class="header-li"><%= link_to("ログアウト", "/logout", {method: "post"}) %></li>
+                    
+                  <% else%>
+                    <li class="header-li"><%= link_to("新規登録", "/signup") %></li>
+                    <li class="header-li"><%= link_to("ログイン", "/login") %></li>
+                  <% end %> 
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <% if flash[:notice]%>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+
+    <%= yield %>
+    <footer>
+        <h2 class="footer-logo">IS</h2>
+        <p class="copyright">&copy;IS, All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

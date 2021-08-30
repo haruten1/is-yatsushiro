@@ -1,0 +1,54 @@
+
+<main>
+        <div class="main-inner">
+            <h2 class="top-title new-account-title">新規登録</h2>
+            <%= form_with url: "/users/create" do |form| %>
+                <div class="new-account-area-wrapper">
+                    <div class="new-account-area">
+                        <form class="new-account-form">
+                            <div class="form-item">
+                                <label class="form-label">名前</label>
+                                <p class="mandatory">必須</p>
+                                <input type="text" name="name" value="">
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label">所属</label>
+                                <p class="mandatory">必須</p>
+                                <input type="text" name="belongs" value="">
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label">My カテゴリー</label>
+                                <p class="mandatory">必須</p>
+                                <select name="my_category_id">
+                                            <option selected>ーーカテゴリー選択ーー
+                                            <option value="1">Excel
+                                            <option value="2">IT
+                                            <option value="3">業務経験
+                                            <option value="4">写真
+                                            <option value="5">イラスト
+                                            <option value="6">スポーツ
+                                            <option value="7">資格
+                                            <option value="8">デザイン
+                                            <option value="9">ライティング
+                                            <option value="10">その他
+                                        </select>
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label">メールアドレス</label>
+                                <p class="mandatory">必須</p>
+                                <input type="text" name="mail">
+                            </div>
+                            <div class="form-item">
+                                <label class="form-label">パスワード</label>
+                                <p class="mandatory">必須</p>
+                                <input type="text" name="password" value="">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="button-area">
+                    <input class="button" type="submit" value="登録する">
+                    </div>
+                </div>
+            <% end%>
+        </div>
+    </main>
