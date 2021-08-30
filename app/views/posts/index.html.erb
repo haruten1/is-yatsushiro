@@ -33,7 +33,7 @@
                                 <div class="card-top-left">
                                     <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
                                     <i class="fas fa-tools"></i>
-                                    <p class="request-card-category">カテゴリー：<%= post.category.category_name %></p>
+                                    <p class="request-card-category">カテゴリー：aa</p>
                                 </div>
                                 <div class="card-top-right">
                                     <div class="card-suggestion">
@@ -49,7 +49,9 @@
                             <div class="card-bottom">
                                 <div class="name-area">
                                     <i class="fas fa-user-circle"></i>
-                                    <p class="card-berongs"><%= post.user.belongs %></p>
+                                    <p class="card-berongs">
+                                    <%= post.user.belongs %>
+                                    </p>
                                     <p class="card-name"><%= post.user.name %></p>
                                 </div>
                                 <div class="time-area">
