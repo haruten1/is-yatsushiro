@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_105218) do
+ActiveRecord::Schema.define(version: 2021_08_30_145800) do
 
   create_table "categories", force: :cascade do |t|
     t.text "category_name"
@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(version: 2021_08_28_105218) do
     t.text "detail"
     t.integer "contractor_id"
     t.date "deadline"
-    t.integer "order_completion"
     t.integer "order_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_completion"
   end
 
   create_table "suggestions", force: :cascade do |t|
