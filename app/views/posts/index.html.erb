@@ -33,7 +33,7 @@
                                 <div class="card-top-left">
                                     <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
                                     <i class="fas fa-tools"></i>
-                                    <p class="request-card-category">カテゴリー：aa</p>
+                                    <p class="request-card-category">カテゴリー：<%= post.category.category_name %></p>
                                 </div>
                                 <div class="card-top-right">
                                     <div class="card-suggestion">
