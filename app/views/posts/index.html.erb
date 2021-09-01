@@ -24,8 +24,8 @@
                 <% @post.each do |post|%>
                     <article class="request-card">
                         <div class="card-inner">
-                            <%= post.order_completion %>
-                            <% if post.order_completion ==0 %>
+                            
+                            <% if post.days_left >=0 %>
                                 <p class="request-status">受付中</p>
                             <% else%>
                                 <p class="request-status request-status-finish">募集終了</p>
