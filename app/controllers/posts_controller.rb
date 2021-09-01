@@ -74,7 +74,7 @@ class PostsController < ApplicationController
 
   def select_secision
     @post = Post.find_by(id: params[:id])
-    @post.order_completion = false
+    @post.order_completion = true
     @post.contractor_id = params[:suggestion_user_id]
     @post.save
     redirect_to("/posts/index")
