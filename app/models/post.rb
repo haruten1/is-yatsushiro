@@ -21,4 +21,14 @@ class Post < ApplicationRecord
     def contractor
         return User.find_by(id:self.contractor_id)
     end
+
+    def  suggestions_count
+        suggestion = Suggestion.where(post_id:self.id)
+        return  suggestion.count
+    end
+
+    def days_left
+        today = Date.today
+        return (self.deadline - today).to_i
+    end
 end

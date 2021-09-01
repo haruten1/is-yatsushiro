@@ -4,21 +4,32 @@ class PostsController < ApplicationController
 
   def index
     @post=Post.all.order(created_at: :desc)
-
+    @today = Date.today
   end
+
+  def index_category
+    @post=Post.where(category_id:params[:id])
+    @post=@post.order(created_at: :desc)
+    @category=Category.find_by(id:params[:id])
+    @today = Date.today
+  end
+
   def show
     @post = Post.find_by(id:params[:id])
     @contractor = @post.contractor
     @user =  @post.user
     @category = @post.category
+    today = Date.today
+    @days_left = (@post.deadline - today).to_i
   end
+
   def new
     
   end
+
   def create
     @post =Post.new(title:params[:title],category_id:params[:category_id],deadline:params[:deadline],detail:params[:detail],order_completion:0,order_user_id:@current_user.id)
     @post.save
-
     if @post.save
       flash[:notice] ="依頼を投稿しました"
       redirect_to("/posts/index")

@@ -5,16 +5,21 @@
             <%= form_with url: "/users/create" do |form| %>
                 <div class="new-account-area-wrapper">
                     <div class="new-account-area">
+                        <% if @error_message %>
+                            <div class="form-error">
+                                <%= @error_message %>
+                            </div>
+                        <% end %> 
                         <form class="new-account-form">
                             <div class="form-item">
                                 <label class="form-label">名前</label>
                                 <p class="mandatory">必須</p>
-                                <input type="text" name="name" value="">
+                                <input type="text" name="name" value="<%= @name%>">
                             </div>
                             <div class="form-item">
                                 <label class="form-label">所属</label>
                                 <p class="mandatory">必須</p>
-                                <input type="text" name="belongs" value="">
+                                <input type="text" name="belongs" value="<%= @belongs%>">
                             </div>
                             <div class="form-item">
                                 <label class="form-label">My カテゴリー</label>
@@ -31,17 +36,17 @@
                                             <option value="8">デザイン
                                             <option value="9">ライティング
                                             <option value="10">その他
-                                        </select>
+                                </select>
                             </div>
                             <div class="form-item">
                                 <label class="form-label">メールアドレス</label>
                                 <p class="mandatory">必須</p>
-                                <input type="text" name="mail">
+                                <input type="text" name="mail" value ="<%= @mail%>">
                             </div>
                             <div class="form-item">
                                 <label class="form-label">パスワード</label>
                                 <p class="mandatory">必須</p>
-                                <input type="text" name="password" value="">
+                                <input type="text" name="password" value="<%= @password%>">
                             </div>
                         </form>
                     </div>

@@ -10,13 +10,18 @@ class UsersController < ApplicationController
     end
 
     def create
-        @order =User.new(name:params[:name],belongs:params[:belongs],my_category_id:params[:my_category_id],mail:params[:mail],password:params[:password])
-        @order.save
+        @user =User.new(name:params[:name],belongs:params[:belongs],my_category_id:params[:my_category_id],mail:params[:mail],password:params[:password])
+        @user.save
 
-        if @order.save
+        if @user.save
             flash[:notice] ="ユーザー登録を完了しました！"
             redirect_to("/posts/index")
         else
+            @name = params[:mail]
+            @belongs = params[:belongs]
+            @mail = params[:mail]
+            @password = params[:password]
+            @error_message = "登録失敗：空欄の箇所があるか、idが既に使用されています"
             render("users/new")
         end
     end
