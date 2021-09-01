@@ -17,7 +17,7 @@ class UsersController < ApplicationController
             flash[:notice] ="ユーザー登録を完了しました！"
             redirect_to("/posts/index")
         else
-            @name = params[:mail]
+            @name = params[:name]
             @belongs = params[:belongs]
             @mail = params[:mail]
             @password = params[:password]
