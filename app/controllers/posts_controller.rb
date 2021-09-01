@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def index_category
     @post=Post.where(category_id:params[:id])
-    @post=@post.order(created_at: :desc)
+    # @post=@post.order(created_at: :desc)
     @category=Category.find_by(id:params[:id])
     @today = Date.today
   end
