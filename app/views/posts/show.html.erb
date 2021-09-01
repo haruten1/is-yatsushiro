@@ -41,7 +41,7 @@
                     <div class="request-item">
                         <i class="fas fa-user-friends"></i>
                         <p class="request-item-title">募集状況</p>
-                        <% if @post.order_completion==1 %>
+                        <% if @post.order_completion==false %>
                             <p class="request-item-content">受注者決定</p>
                         <% else%>
                             <p class="request-item-smal">提案数 <span>3</span>人</p>
