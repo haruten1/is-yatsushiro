@@ -21,14 +21,16 @@ class PostsController < ApplicationController
     @category = @post.category
     today = Date.today
     @days_left = (@post.deadline - today).to_i
+
+    @chat = Chat.where(order_id:params[:id])
   end
 
   def new
     
   end
 
-  def create
-    @post =Post.new(title:params[:title],category_id:params[:category_id],deadline:params[:deadline],detail:params[:detail],order_completion:0,order_user_id:@current_user.id)
+  def create()
+    @post =Post.new(title:params[:title],category_id:params[:category_id],deadline:params[:deadline],detail:params[:detail],order_completion:false,order_user_id:@current_user.id)
     @post.save
     if @post.save
       flash[:notice] ="依頼を投稿しました"
@@ -72,11 +74,19 @@ class PostsController < ApplicationController
     @suggestion = Suggestion.where(post_id: params[:id])
   end
 
-  def select_secision
+  def select_decision
     @post = Post.find_by(id: params[:id])
     @post.order_completion = true
     @post.contractor_id = params[:suggestion_user_id]
     @post.save
     redirect_to("/posts/index")
   end
+
+  def chat
+    @post =Post.find_by(id:params[:id])
+    @chat =Chat.new(comment:params[:comment],order_id:params[:id],question_user_id:@current_user.id,answer_user_id:@post.id)
+    @chat.save
+    redirect_to("/posts/index")
+  end
+
 end

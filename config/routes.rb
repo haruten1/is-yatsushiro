@@ -10,13 +10,15 @@ Rails.application.routes.draw do
   get "posts/:id/suggestion" => "posts#suggestion"
   post "posts/:id/suggestion/create" => "posts#suggestion_create"
   get "posts/:id/select" => "posts#select"
-  post "posts/:id/select/decision" => "posts#select_secision"
+  post "posts/:id/select/decision" => "posts#select_decision"
   get "signup" => "users#new"
   post "users/create" => "users#create"
   get "login" => "users#login_form"
   post "login" => "users#login"
   post "logout" => "users#logout"
-  post "chats/send" => "chats#send"
+  get "users/:id" => "users#user_page"
+  post "chat/:id" => "posts#chat"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/" => "home#top"
 end

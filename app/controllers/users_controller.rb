@@ -27,7 +27,9 @@ class UsersController < ApplicationController
     end
 
     def login_form
-        
+
+
+
     end
 
     def login
@@ -51,5 +53,15 @@ class UsersController < ApplicationController
         session[:user_id] = nil
         flash[:notice] = "ログアウトしました"
         redirect_to("/login")
+    end
+
+    def user_page
+        @user = User.find_by(id:params[:id])
+        @post_order_now = Post.where(order_user_id:params[:id], order_completion:false)
+        @post_order_finish = Post.where(order_user_id:params[:id],order_completion:true)
+        @post_contractor =  Post.where(contractor_id:params[:id])
+
+        @suggestion = Suggestion.where(user_id: params[:id])
+        puts @suggestion
     end
 end

@@ -10,8 +10,8 @@
                             <label class="btn btn-secondary suggestion-item" for="<%= suggestion.id%>">
                                 <div class="suggestion-name-area">
                                     <i class="fas fa-user-circle"></i>
-                                    <p class="sugestion-name">○○課</p>
-                                    <p class="sugestion-name">名前はまだ出ません</p>
+                                    <p class="sugestion-name"><%= suggestion.user.belongs %></p>
+                                    <p class="sugestion-name"><%= suggestion.user.name %></p>
                                 </div>
                                 <div class="suggestion-comment-area">
                                     <div class="suggestion-comment-title-area">
@@ -19,7 +19,7 @@
                                         <p class="suggestion-comment-title">メッセージ</p>
                                     </div>
                                     <p class="suggestion-comment"><%= suggestion.comment %></p>
-                                    <p class="suggestion-time">2021/8/16 15:00（時間もまだ出ません）</p>
+                                    <p class="suggestion-time"><%= suggestion.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
                                 </div>
                             </label>
                         <% end%>
