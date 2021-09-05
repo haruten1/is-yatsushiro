@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def index_category
     @post=Post.where(category_id:params[:id])
-    # @post=@post.order(created_at: :desc)
+    @post=@post.order(created_at: :desc)
     @category=Category.find_by(id:params[:id])
     @today = Date.today
   end
@@ -72,6 +72,7 @@ class PostsController < ApplicationController
   def select
     @post = Post.find_by(id: params[:id])
     @suggestion = Suggestion.where(post_id: params[:id])
+    @suggestion=@suggestion.order(created_at: :desc)
   end
 
   def select_decision
@@ -86,7 +87,7 @@ class PostsController < ApplicationController
     @post =Post.find_by(id:params[:id])
     @chat =Chat.new(comment:params[:comment],order_id:params[:id],question_user_id:@current_user.id,answer_user_id:@post.id)
     @chat.save
-    redirect_to("/posts/index")
+    redirect_to("/posts/#{@post.id}")
   end
 
 end
