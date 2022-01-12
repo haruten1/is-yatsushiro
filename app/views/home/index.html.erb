@@ -1,0 +1,74 @@
+    <main>
+        <div class="main-inner">
+            <h2 class="top-title">新着依頼</h2>
+            <div class="column-wrapper">
+                <div class="column-left">
+                    <div class="category-area">
+                        <h3 class="category-title">カテゴリー</h3>
+                        <ul class="category-list">
+                            <li class="category-item"><%= link_to("全て","/posts/index")%></li>
+                            <li class="category-item"><%= link_to("Excel","/posts/index/1")%></li>
+                            <li class="category-item"><%= link_to("IT","/posts/index/2")%></li>
+                            <li class="category-item"><%= link_to("業務経験","/posts/index/3")%></li>
+                            <li class="category-item"><%= link_to("写真","/posts/index/4")%></li>
+                            <li class="category-item"><%= link_to("イラスト","/posts/index/5")%></li>
+                            <li class="category-item"><%= link_to("スポーツ","/posts/index/6")%></li>
+                            <li class="category-item"><%= link_to("資格","/posts/index/7")%></li>
+                            <li class="category-item"><%= link_to("デザイン","/posts/index/8")%></li>
+                            <li class="category-item"><%= link_to("ライティング","/posts/index/9")%></li>
+                            <li class="category-item"><%= link_to("その他","/posts/index/10")%></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column-right">
+                <% @post.each do |post|%>
+                    <article class="request-card">
+                        <div class="card-inner">
+                            
+                            <% if post.days_left >=0 && post.order_completion == false %>
+                                <p class="request-status">受付中</p>
+                            <% else%>
+                                <p class="request-status request-status-finish">募集終了</p>
+                            <% end%>
+                            <div class="card-top">
+                                <div class="card-top-left">
+                                    <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
+                                    <i class="fas fa-tools"></i>
+                                    <p class="request-card-category">カテゴリー：<%= post.category.category_name %></p>
+                                </div>
+                                <div class="card-top-right">
+                                    <div class="card-suggestion">
+                                        <p>提案</p>
+                                        <p> <span><%= post.suggestions_count %></span>人</p>
+                                    </div>
+                                    <div class="card-deadline">
+                                        <p>期限</p>
+                                        <% if post.days_left >=0 %>
+                                            <p>あと <span><%= post.days_left%></span>日</p>
+                                        <% else%>
+                                            <p>募集終了</p>
+                                        <% end%>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-bottom">
+                                <div class="name-area">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p class="card-berongs">
+                                    <%= post.user.belongs %>
+                                    </p>
+                                    <p class="card-name"><%= post.user.name %></p>
+                                </div>
+                                <div class="time-area">
+                                    <p>依頼日：<%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                                </div>                                
+                            </div>
+                        </div>
+                    </article>
+                <% end%>
+                </div>
+            </div>
+        </div>
+    </main>
