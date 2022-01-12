@@ -1,26 +1,27 @@
-# README
+# Is(Internal Sourcing)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Is(Internal Sourcing)は職場内クラウドソーシングアプリです
 
-Things you may want to cover:
+＜依頼側＞
+①特別な技能を必要とする仕事を依頼ししよう！
+②依頼に対して提案が来たら発注する人を決定しよう！
 
-* Ruby version
+＜受注側＞
+①依頼の中から自分が受けられる仕事を探そう！
+②依頼に対してコメントをつけて提案しよう！
+③依頼でわからない事があれば提案しよう！
 
-* System dependencies
+＃使用技術
+    Ruby 2.6.8
+    Ruby on Rails 6.1.4
+    SQLite 3.32.3
 
-* Configuration
+＃機能一覧
+    ・ユーザー登録、ログイン機能
+    ・依頼投稿機能
+    ・依頼に対する提案機能
+    ・発注者決定機能
+    ・チャット機能
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# is-yatsushiro
-# is-yatsushiro
+#インフラ環境
+  herokuを使用
