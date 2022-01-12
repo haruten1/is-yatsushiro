@@ -1,0 +1,211 @@
+    <main>
+        <div class="main-inner">
+            <div class="mypage-name-area">
+                <p class="mypage-bellong"><%= @user.belongs %></p>
+                <h2 class="mypage-name"><%= @user.name %></h2>
+            </div>
+        </div>
+        <div class="tabs">
+            <input id="all" type="radio" name="tab_item" checked>
+            <label class="tab_item" for="all">依頼中</label>
+            <input id="programming" type="radio" name="tab_item">
+            <label class="tab_item" for="programming">依頼済み</label>
+            <input id="design" type="radio" name="tab_item">
+            <label class="tab_item" for="design">提案中</label>
+            <input id="last" type="radio" name="tab_item">
+            <label class="tab_item" for="last">受注済み</label>
+            <div class="tab_content" id="all_content">
+                <% @post_order_now.each do |post|%>
+                    <article class="request-card mypage-card">
+                        <div class="card-inner">
+                            <% if post.days_left >=0 && post.order_completion == false %>
+                                <p class="request-status">受付中</p>
+                            <% else%>
+                                <p class="request-status request-status-finish">募集終了</p>
+                            <% end%>
+                            <div class="card-top">
+                                <div class="card-top-left">
+                                    <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
+                                    <i class="fas fa-tools"></i>
+                                    <p class="request-card-category">カテゴリー：<%= post.category.category_name %></p>
+                                </div>
+                                <div class="card-top-right">
+                                    <div class="card-suggestion">
+                                        <p>提案</p>
+                                        <p> <span><%= post.suggestions_count %></span>人</p>
+                                    </div>
+                                    <div class="card-deadline">
+                                        <p>期限</p>
+                                        <% if post.days_left >=0 %>
+                                            <p>あと <span><%= post.days_left%></span>日</p>
+                                        <% else%>
+                                            <p>募集終了</p>
+                                        <% end%>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-bottom">
+                                <div class="name-area">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p class="card-berongs">
+                                    <%= post.user.belongs %>
+                                    </p>
+                                    <p class="card-name"><%= post.user.name %></p>
+                                </div>
+                                <div class="time-area">
+                                    <p>依頼日：<%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                                </div>                                
+                            </div>
+                        </div>
+                    </article>
+                <% end%>
+            </div>
+            <div class="tab_content" id="programming_content">
+                <% @post_order_finish.each do |post|%>
+                    <article class="request-card mypage-card">
+                        <div class="card-inner">
+                            <% if post.days_left >=0 && post.order_completion == false %>
+                                <p class="request-status">受付中</p>
+                            <% else%>
+                                <p class="request-status request-status-finish">募集終了</p>
+                            <% end%>
+                            <div class="card-top">
+                                <div class="card-top-left">
+                                    <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
+                                    <i class="fas fa-tools"></i>
+                                    <p class="request-card-category">カテゴリー：<%= post.category.category_name %></p>
+                                </div>
+                                <div class="card-top-right">
+                                    <div class="card-suggestion">
+                                        <p>提案</p>
+                                        <p> <span><%= post.suggestions_count %></span>人</p>
+                                    </div>
+                                    <div class="card-deadline">
+                                        <p>期限</p>
+                                        <% if post.days_left >=0 %>
+                                            <p>あと <span><%= post.days_left%></span>日</p>
+                                        <% else%>
+                                            <p>募集終了</p>
+                                        <% end%>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-bottom">
+                                <div class="name-area">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p class="card-berongs">
+                                    <%= post.user.belongs %>
+                                    </p>
+                                    <p class="card-name"><%= post.user.name %></p>
+                                </div>
+                                <div class="time-area">
+                                    <p>依頼日：<%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                                </div>                                
+                            </div>
+                        </div>
+                    </article>
+                <% end%>
+            </div>
+            <div class="tab_content" id="design_content">
+                <% @suggestion.each do |suggestion|%>
+                    <!-- 変数postを定義してください -->
+                    <% post= Post.find_by(id: suggestion.post_id, order_completion: false)%>
+                        <article class="request-card mypage-card">
+                        <div class="card-inner">
+                            <% if post.days_left >=0 && post.order_completion == false %>
+                                <p class="request-status">受付中</p>
+                            <% else%>
+                                <p class="request-status request-status-finish">募集終了</p>
+                            <% end%>
+                            <div class="card-top">
+                                <div class="card-top-left">
+                                    <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
+                                    <i class="fas fa-tools"></i>
+                                    <p class="request-card-category">カテゴリー：<%= post.category.category_name %></p>
+                                </div>
+                                <div class="card-top-right">
+                                    <div class="card-suggestion">
+                                        <p>提案</p>
+                                        <p> <span><%= post.suggestions_count %></span>人</p>
+                                    </div>
+                                    <div class="card-deadline">
+                                        <p>期限</p>
+                                        <% if post.days_left >=0 %>
+                                            <p>あと <span><%= post.days_left%></span>日</p>
+                                        <% else%>
+                                            <p>募集終了</p>
+                                        <% end%>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-bottom">
+                                <div class="name-area">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p class="card-berongs">
+                                    <%= post.user.belongs %>
+                                    </p>
+                                    <p class="card-name"><%= post.user.name %></p>
+                                </div>
+                                <div class="time-area">
+                                    <p>依頼日：<%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                                </div>                                
+                            </div>
+                        </div>
+                        </article>
+                <% end%>
+            </div>
+            <div class="tab_content" id="last_content">
+                <% @post_contractor.each do |post|%>
+                    <article class="request-card mypage-card">
+                        <div class="card-inner">
+                            <% if post.days_left >=0 && post.order_completion == false %>
+                                <p class="request-status">受付中</p>
+                            <% else%>
+                                <p class="request-status request-status-finish">募集終了</p>
+                            <% end%>
+                            <div class="card-top">
+                                <div class="card-top-left">
+                                    <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
+                                    <i class="fas fa-tools"></i>
+                                    <p class="request-card-category">カテゴリー：<%= post.category.category_name %></p>
+                                </div>
+                                <div class="card-top-right">
+                                    <div class="card-suggestion">
+                                        <p>提案</p>
+                                        <p> <span><%= post.suggestions_count %></span>人</p>
+                                    </div>
+                                    <div class="card-deadline">
+                                        <p>期限</p>
+                                        <% if post.days_left >=0 %>
+                                            <p>あと <span><%= post.days_left%></span>日</p>
+                                        <% else%>
+                                            <p>募集終了</p>
+                                        <% end%>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-bottom">
+                                <div class="name-area">
+                                    <i class="fas fa-user-circle"></i>
+                                    <p class="card-berongs">
+                                    <%= post.user.belongs %>
+                                    </p>
+                                    <p class="card-name"><%= post.user.name %></p>
+                                </div>
+                                <div class="time-area">
+                                    <p>依頼日：<%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+                                </div>                                
+                            </div>
+                        </div>
+                    </article>
+                <% end%>
+            </div>
+    </main>

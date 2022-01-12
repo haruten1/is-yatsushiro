@@ -31,4 +31,5 @@ class Post < ApplicationRecord
         today = Date.today
         return (self.deadline - today).to_i
     end
+
 end

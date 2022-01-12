@@ -12,7 +12,7 @@
                     <div class="request-item">
                         <i class="far fa-calendar-alt"></i>
                         <p class="request-item-title">掲載日</p>
-                        <p class="request-item-content"><%= @post.created_at.strftime("%Y年%m月%d日")%></p>
+                        <p class="request-item-content"><%= @post.created_at.strftime('%Y/%m/%d %H:%M')%></p>
                     </div>
                 </div>
                 <div class="request-items-area">
@@ -24,7 +24,7 @@
                                 <p class="request-item-smal">
                                     あと <span><%= @post.days_left%></span>日
                                 </p>
-                                <p class="request-item-content"><%= @post.deadline.strftime("%Y年%m月%d日")%></p>
+                                <p class="request-item-content"><%= @post.deadline.strftime('%Y/%m/%d')%></p>
                             <% else%>
                                 <p class="request-item-content">募集終了</p>
                             <% end%>
@@ -44,7 +44,7 @@
                         <% if @post.order_completion==true %>
                             <p class="request-item-content">受注者決定</p>
                         <% else%>
-                            <p class="request-item-smal">提案数 <span>3</span>人</p>
+                            <p class="request-item-smal">提案数 <span><%=  @post.suggestions_count%></span>人</p>
                         <% end%>
                     </div>
                 </div>
@@ -82,31 +82,31 @@
                     <i class="fas fa-comments"></i>
                     <p class="chat-title">質問チャット</p>
                 </div>
-                <div class="chat-room"><!--①LINE会話全体を囲う-->
-                    <!--②左コメント始-->
-                    <div class="left-chat">
-                        <div class="chatting">
-                            <div class="says">
-                                <p class="chat-message">テストテスト</p>
-                                <p class="chat-time">2021/8/16 15:00 ○課　〇〇</p>
+                <div class="chat-room">
+                    <% @chat.each do |chat|%>
+                        <% if chat.question_user_id == @post.order_user_id %>
+                            <div class="left-chat">
+                                <div class="chatting">
+                                    <div class="says">
+                                        <p class="chat-message"><%= chat.comment %></p>
+                                        <p class="chat-time"><%= chat.created_at.strftime('%Y/%m/%d %H:%M')%>　　<%= chat.user.belongs %>　<%= chat.user.name %></p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                        <!--②/左コメント終-->
-                    
-                        <!--③右コメント始-->
-                    <div class="right-chat">
-                        <div class="chatting">
-                            <div class="says-right">
-                                <p class="chat-message">テストテスト</p>
-                                <p class="chat-time">2021/8/16 15:00 ×課　〇〇</p>
+                        <% else%>
+                            <div class="right-chat">
+                                <div class="chatting">
+                                    <div class="says-right">
+                                        <p class="chat-message"><%= chat.comment %></p>
+                                        <p class="chat-time"><%= chat.created_at.strftime('%Y/%m/%d %H:%M')%>　　<%= chat.user.belongs %>　<%= chat.user.name %></p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                        <!--/③右コメント終-->
-                        
-                </div><!--/①LINE会話終了-->
-                <%= form_with url: "/chats/send" do |form| %>
+                        <% end%>
+                    <% end%>
+                </div>
+
+                <%= form_with url: "/chat/#{@post.id}" do |form| %>
                     <div class="chat-form-wrapper">
                         <div class="chat-form">
                             <input type="text" name ="comment">
