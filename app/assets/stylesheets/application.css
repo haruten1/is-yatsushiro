@@ -825,7 +825,11 @@ footer{
 
 .button_link{
   padding-top: 22px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
+
 
 /* show ------------------------------------*/
 .request-title{

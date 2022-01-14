@@ -90,4 +90,10 @@ class PostsController < ApplicationController
     redirect_to("/posts/#{@post.id}")
   end
 
+  def admin_delete
+    @post =Post.find_by(id:params[:id]).destroy
+    @chat = Chat.where(order_id:params[:id]).destroy_all
+    redirect_to("/")
+  end
+
 end

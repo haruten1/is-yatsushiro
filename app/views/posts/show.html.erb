@@ -77,6 +77,9 @@
                         <%= link_to("提案する", "/posts/#{@post.id}/suggestion", class:"button button_link") %>
                     </div>
             <% end %> 
+            <% if @current_user.mail == "admin"%>
+                <%= link_to("削除", "/posts/#{@post.id}/delete",method: "delete",class:"button button_link") %>
+            <%end%>
             <div class="chat-area">
                 <div class="chat-title-area">
                     <i class="fas fa-comments"></i>

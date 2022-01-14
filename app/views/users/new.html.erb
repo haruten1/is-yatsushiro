@@ -51,9 +51,12 @@
                         </form>
                     </div>
                     <div class="button-area">
-                    <input class="button" type="submit" value="登録する">
+                        <input class="button" type="submit" value="登録する">
                     </div>
                 </div>
             <% end%>
+            <div class="button-area">
+                <%= link_to("サンプルユーザーでログイン", "login/sample", method: "post",class:"button button_link ") %>
+            </div>
         </div>
     </main>

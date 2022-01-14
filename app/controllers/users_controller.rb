@@ -35,7 +35,6 @@ class UsersController < ApplicationController
     def login
         @user = User.find_by(mail: params[:mail], password: params[:password])
 
-        puts @user
         if @user
             session[:user_id] = @user.id
             flash[:notice] = "ログインしました"
@@ -47,6 +46,13 @@ class UsersController < ApplicationController
 
             render("users/login_form")
         end
+    end
+
+    def login_sample
+        @user = User.find_by(mail:"sample")
+        session[:user_id] = @user.id
+        flash[:notice] = "ログインしました"
+        redirect_to("/posts/index")
     end
 
     def logout
