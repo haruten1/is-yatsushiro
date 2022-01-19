@@ -181,13 +181,13 @@
                                     </div>
                                     <div class="card-deadline">
                                         <p>期限</p>
-                                        <% if post.days_left >=0 %>
-                                            <p>あと <span><%= post.days_left%></span>日</p>
-                                        <% else%>
-                                            <p>募集終了</p>
-                                        <% end%>
-
-                                        
+                                        <%if post?? %>
+                                            <% if post.days_left >=0 %>
+                                                <p>あと <span><%= post.days_left%></span>日</p>
+                                            <% else%>
+                                                <p>募集終了</p>
+                                            <% end%>
+                                        <%end%>
                                     </div>
                                 </div>
                             </div>
