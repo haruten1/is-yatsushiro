@@ -112,8 +112,7 @@
             </div>
             <div class="tab_content" id="design_content">
                 <% @suggestion.each do |suggestion|%>
-                    <!-- 変数postを定義してください -->
-                    <% post= suggestion.suggestion_post%>
+                    <% post = suggestion.suggestion_post%>
                         <article class="request-card mypage-card">
                         <div class="card-inner">
                             <% if post.days_left >=0 && post.order_completion == false %>
