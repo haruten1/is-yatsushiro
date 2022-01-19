@@ -72,6 +72,7 @@ class UsersController < ApplicationController
 
         @suggestion = Suggestion.where(user_id: params[:id])
         @suggestion=@suggestion.order(created_at: :desc)
-        puts @suggestion
+        
+        @days_left = (@post.deadline - today).to_i
     end
 end
