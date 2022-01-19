@@ -115,7 +115,7 @@
                     <% post = suggestion.suggestion_post%>
                         <article class="request-card mypage-card">
                         <div class="card-inner">
-                            <%if post ? %>
+                            <%if post.nil? %>
                                 <% if post.days_left >=0 && post.order_completion == false %>
                                     <p class="request-status">受付中</p>
                                 <% else%>
