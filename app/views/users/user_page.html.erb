@@ -115,11 +115,13 @@
                     <% post = suggestion.suggestion_post%>
                         <article class="request-card mypage-card">
                         <div class="card-inner">
-                            <% if post.days_left >=0 && post.order_completion == false %>
-                                <p class="request-status">受付中</p>
-                            <% else%>
-                                <p class="request-status request-status-finish">募集終了</p>
-                            <% end%>
+                            <%if post ??%>
+                                <% if post.days_left >=0 && post.order_completion == false %>
+                                    <p class="request-status">受付中</p>
+                                <% else%>
+                                    <p class="request-status request-status-finish">募集終了</p>
+                                <% end%>
+                            <%end%>
                             <div class="card-top">
                                 <div class="card-top-left">
                                     <h3 class="request-card-title"><%= link_to(post.title,"/posts/#{post.id}")%></h3>
@@ -181,13 +183,13 @@
                                     </div>
                                     <div class="card-deadline">
                                         <p>期限</p>
-                                        <%if post?? %>
-                                            <% if post.days_left >=0 %>
-                                                <p>あと <span><%= post.days_left%></span>日</p>
-                                            <% else%>
-                                                <p>募集終了</p>
-                                            <% end%>
-                                        <%end%>
+                                        <% if post.days_left >=0 %>
+                                            <p>あと <span><%= post.days_left%></span>日</p>
+                                        <% else%>
+                                            <p>募集終了</p>
+                                        <% end%>
+
+                                        
                                     </div>
                                 </div>
                             </div>
